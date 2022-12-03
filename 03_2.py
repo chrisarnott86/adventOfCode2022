@@ -11,8 +11,5 @@ priority={'a':1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10,'k':11,'l
          'W':49,'X':50,'Y':51,'Z':52}
 sumbo=0         
 for i in range(0,len(lines),3):
-    setA=set([*lines[i]])
-    setB=set([*lines[i+1]])
-    setC=set([*lines[i+2]])
-    sumbo+=priority[min(setA.intersection(setB,setC))]
+    sumbo+=priority[min(set([*lines[i]]).intersection(set([*lines[i+1]]),set([*lines[i+2]])))]
 print(sumbo)
