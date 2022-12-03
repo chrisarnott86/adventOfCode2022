@@ -11,17 +11,20 @@ priority={'a':1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10,'k':11,'l
          'W':49,'X':50,'Y':51,'Z':52}
 
 sumbo=0         
-for line in lines:
-    bagMiddle=len(line)//2
-    bagA=line[0:bagMiddle]
-    bagB=line[bagMiddle:]
+for i in range(0,len(lines),3):
+    bagA=lines[i]
+    bagB=lines[i+1]
+    bagC=lines[i+2]
     setA=set()
     setB=set()
+    setC=set()
     for char in bagA:
         setA.add(char)
     for char in bagB:
         setB.add(char)
-    #print(min(setA.intersection(setB)))
-    sumbo+=priority[min(setA.intersection(setB))]
+    for char in bagC:
+        setC.add(char)
+    #print(min(setA.intersection(setB,setC)))
+    sumbo+=priority[min(setA.intersection(setB,setC))]
 
 print(sumbo)
