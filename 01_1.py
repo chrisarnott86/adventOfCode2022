@@ -1,5 +1,3 @@
-#from numpy import loadtxt
-
 with open('input1.txt','r') as file:
 #with open('input1-test.txt','r') as file:
     lines = file.readlines()
