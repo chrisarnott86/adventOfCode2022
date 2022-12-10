@@ -5,6 +5,6 @@ with open('input6.txt','r') as file:
 
 for line in lines:
     for i,char in enumerate(line):
-        if (len(set(char for char in line[i:i+14]))==14):
+        if (len(set(line[i:i+14]))==14):
             print(i+14)
             break
