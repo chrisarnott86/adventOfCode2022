@@ -1,7 +1,9 @@
 import re
+from math import lcm
+from functools import reduce
 
-#with open('input11.txt','r') as file:
-with open('input11-test.txt','r') as file:
+with open('input11.txt','r') as file:
+#with open('input11-test.txt','r') as file:
     lines = file.readlines()
     lines = [line.strip() for line in lines]
 
@@ -26,7 +28,8 @@ class Monkey:
     
     def updateWorry(self,item):
         item = self.evalOperation(self.operation,item)
-#        item = item//3
+#        item = item % 96577 # for test data 
+        item = item % 9699690 # for actual data
         return item
         
     def receiveItem(self,item):
@@ -72,11 +75,13 @@ for line in lines:
         tempTargets.append(int(re.findall("[0-9]", line)[0]))
         monkeys.append(Monkey(tempItems,tempOps,tempDivisor,tempTargets))
         
-
-for rounds in range(50):
+# ref https://github.com/btrotta/advent-of-code-2022/blob/main/day11b.py
+modulus = reduce(lcm, [m.testDivisor for m in monkeys])
+print("modulus is ", modulus)
+for rounds in range(10000):
     for i,monkey in enumerate(monkeys):
-        if (i==0):
-            print("Round:",rounds+1," Monkey",i, monkey.showInspects())
+#        if (i==0):
+#            print("Round:",rounds+1," Monkey",i, monkey.showInspects())
         monkey.haveTurn()
 
 allInspects=[]
